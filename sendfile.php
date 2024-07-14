@@ -17,6 +17,8 @@ function force_x_sendfile()
 function custom_download_file_xsendfile( $file_path, $filename ) {
 	error_log('filepath = ' . $file_path);
 	error_log('filename = ' . $filename);
+	header( 'Content-Disposition: inline; filename="' . $filename . '";' );
+	header( 'Content-Transfer-Encoding: binary' );
 	header('X-Sendfile: ' . $file_path);
 	exit;
 	$parsed_file_path = WC_Download_Handler::parse_file_path($file_path);
