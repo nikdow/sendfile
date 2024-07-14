@@ -16,8 +16,11 @@ function force_x_sendfile()
 }
 function custom_download_file_xsendfile( $file_path, $filename ) {
 	$parsed_file_path = WC_Download_Handler::parse_file_path($file_path);
+	error_log('parsed_file_path = ' . $parsed_file_path[0]);
 	custom_download_headers( $parsed_file_path['file_path'], $filename );
+	error_log('after custom_download_headers');
 	$filepath = apply_filters( 'woocommerce_download_file_xsendfile_file_path', $parsed_file_path['file_path'], $file_path, $filename, $parsed_file_path );
+	error_log('filepath = ' . $filepath);
 	header( 'X-Sendfile: ' . $filepath );
 	exit;
 }
